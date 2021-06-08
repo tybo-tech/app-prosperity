@@ -1,0 +1,118 @@
+<div class="new-top-bar" *ngIf="subjects">
+  <div class="menu-back-btn" (click)="back()">
+    <span class="material-icons">
+      arrow_back
+    </span>
+  </div>
+
+  <div class="col-header">
+    Subjects
+  </div>
+</div>
+<h3 class="action-header">
+  <a>
+    School subjects ({{subjects?.length}})
+  </a>
+
+  <span (click)="add()">
+    Add subject
+  </span>
+</h3>
+
+<div class="basic" *ngIf="subjects">
+
+
+  <div class="product-item" *ngFor="let item of subjects" (click)="view(item)">
+    <div class="item">
+      <div class="icon" *ngIf="item.Dp">
+        <div class="user-dp-image">
+          <img *ngIf="item.Dp" [src]="item.Dp" alt="">
+        </div>
+      </div>
+
+      <div class="icon" *ngIf="!item.Dp">
+        <span class="material-icons">
+          library_books
+        </span>
+      </div>
+    </div>
+    <div class="item">
+     <p class="strong-text" style="top: .5em; ">
+      {{item.Name}}
+     </p>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div class="" *ngIf="subjects && !subjects.length">
+  <div class="no-data">
+    <h1>
+      Your school do not have subjects yet.
+    </h1>
+    <img src="assets/images/common/products.svg" alt="">
+    <p>
+      All subjects will show here.
+    </p>
+
+  </div>
+</div>
+
+
+
+
+<div class="quick-add" *ngIf="showAdd && newSubject">
+  <div class="form">
+    <h1>
+      Add new subject.
+    </h1>
+
+    <div class="form-item">
+      <label for="">subject name</label>
+      <input type="text" name="" id="" [(ngModel)]="newSubject.Name" placeholder="First Name">
+    </div>
+
+
+
+
+    <div class="form-item">
+      <button (click)="save()" [disabled]="!newSubject.Name">Save</button>
+      <div class="link" (click)="showAdd = false">Cancel</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="quick-add" *ngIf="showBulkAdd">
+  <div class="form">
+    <h1>
+      Choose your school subjects.
+    </h1>
+
+
+    <div class="form-item">
+
+      <div class="product-item cols-2" *ngFor="let item of systemSubjects">
+        <div class="item">
+          <p>
+            {{item.Name}}
+          </p>
+
+        </div>
+        <div class="item">
+          <mat-slide-toggle (change)="select(item)" [(ngModel)]="item.IsSelected"></mat-slide-toggle>
+        </div>
+      </div>
+
+
+
+
+      <div class="form-item">
+        <button (click)="showBulkAdd = false" [disabled]="!subjects.length">Done</button>
+        <button class="secondary" (click)="showBulkAdd = false; showAdd = true">Not in the list?</button>
+        <div class="link" (click)="showBulkAdd = false">Cancel</div>
+      </div>
+    </div>
+  </div>

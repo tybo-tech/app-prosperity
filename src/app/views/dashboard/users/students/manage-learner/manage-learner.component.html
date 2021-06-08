@@ -1,0 +1,93 @@
+<div class="main add-screen mobile-full" *ngIf="user">
+
+  <div class="new-top-bar">
+    <div class="menu-back-btn" (click)="back()">
+      <span class="material-icons">
+        arrow_back
+      </span>
+    </div>
+  
+    <div class="col-header">
+      Edit learner
+    </div>
+  </div>
+
+  <div class="data-view-main" *ngIf="users">
+
+    <div class="basic">
+      <!-- <h3 class="header-label heading">
+        <u>
+          {{user?.Name}}
+        </u>
+      </h3> -->
+
+      <div class="dash-forms">
+
+        <div class="upload-preview">
+          <div class="upload">
+            <input type="file" accept="image/png, image/jpeg" #file placeholder="Choose file" multiple
+              (change)="uploadFile(file.files)" style="display:none;">
+            <span class="material-icons  user-dp" *ngIf="!user.Dp" (click)="file.click()">
+              add_a_photo
+            </span>
+          </div>
+          <div class="preview" (click)="file.click()">
+            <img *ngIf="user.Dp" [src]="user.Dp" alt="">
+          </div>
+        </div>
+        <div class="form-item">
+          <label for="name">Title *</label>
+          <select [(ngModel)]="user.Tittle">
+            <option *ngFor="let item of TITLES" [value]="item">{{item}}</option>
+          </select>
+        </div>
+        <div class="form-item">
+          <label for="name">Firsts Names *</label>
+          <input type="text" [(ngModel)]="user.Name" placeholder="e.g. Bongani">
+        </div>
+       
+
+        <div class="form-item">
+          <label for="name">Surname</label>
+          <input type="text" [(ngModel)]="user.Surname" placeholder="Gumede">
+        </div>
+
+        <div class="form-item">
+          <label for="name">Learner's Email
+          </label>
+          <input type="email" [(ngModel)]="user.Email" placeholder="e.g. john.mnisi@gmail.com">
+        </div>
+
+        <div class="form-item">
+          <label for="name">Phone Number</label>
+          <input type="tel" [(ngModel)]="user.PhoneNumber" placeholder="e.g. 084 001 0100">
+        </div>
+        
+
+        <div class="form-group">
+          <label class="map" for="exampleInputSurname">Learner's address</label>
+
+          <textarea name="" [(ngModel)]="user.AddressLineHome" id="" cols="30" rows="10"></textarea>
+        </div>
+
+
+
+
+
+        <button mat-button class="primary" type="button" [disabled]="!user.Name" type="button" (click)="save()">
+          Save Learner
+        </button>
+
+      </div>
+    </div>
+
+   
+  </div>
+
+
+</div>
+
+
+
+
+<app-user-feedback *ngIf="modalModel && modalModel.heading" [modalModel]="modalModel"></app-user-feedback>

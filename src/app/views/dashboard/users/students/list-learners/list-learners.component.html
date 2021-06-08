@@ -1,0 +1,191 @@
+<div class="new-top-bar" *ngIf="users">
+  <div class="menu-back-btn" (click)="back()">
+    <span class="material-icons">
+      arrow_back
+    </span>
+  </div>
+
+  <div class="col-header">
+    Learners
+  </div>
+</div>
+<h3 class="action-header">
+  <a>
+    School Learners ({{users?.length}})
+  </a>
+
+  <span (click)="add()">
+    Add Learner
+  </span>
+</h3>
+
+<div class="basic" *ngIf="users">
+
+
+  <div class="product-item" *ngFor="let item of users" (click)="view(item)">
+    <div class="item">
+      <div class="icon" *ngIf="item.Dp">
+        <div class="user-dp-image">
+          <img *ngIf="item.Dp" [src]="item.Dp" alt="">
+        </div>
+      </div>
+
+      <div class="icon" *ngIf="!item.Dp">
+        <span class="material-icons">
+          account_circle
+          </span>
+      </div>
+    </div>
+    <div class="item">
+      <p class="strong-text">
+        {{item.Tittle}} {{item.Name}} {{item.Surname}}
+      </p>
+      <p>
+        <b>
+          <span *ngIf="item.PhoneNumber" class="cat">
+            {{item.PhoneNumber}}
+          </span>
+          <span *ngIf="item.Email" class="cat">
+            {{item.Email}}
+          </span>
+        </b>
+      
+        <span *ngIf="item.AddressLineHome" class="cat address">
+          {{item.AddressLineHome}}
+        </span>
+
+      </p>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div class="" *ngIf="users && !users.length">
+  <div class="no-data">
+    <h1>
+      Your school do not have learners yet.
+    </h1>
+    <img src="assets/images/common/products.svg" alt="">
+    <p>
+      All learners will show here.
+    </p>
+
+  </div>
+</div>
+
+
+
+
+<div class="quick-add" *ngIf="showAdd && newUser">
+  <div class="form">
+    <h1>
+      Add new Learner.
+    </h1>
+
+
+    <div class="form-item">
+      <label for="">Learner Title</label>
+      <select [(ngModel)]="newUser.Tittle">
+        <option *ngFor="let item of TITLES" [value]="item">{{item}}</option>
+      </select>
+    </div>
+    <div class="form-item">
+      <label for="">Learner name</label>
+      <input type="text" name="" id="" [(ngModel)]="newUser.Name" placeholder="First Name">
+    </div>
+    <div class="form-item">
+      <label for="">Learner surname</label>
+      <input type="text" name="" id="" [(ngModel)]="newUser.Surname" placeholder="Last name">
+    </div>
+
+    <div class="form-item">
+      <label for="">Learner email</label>
+      <input type="email" name="" id="" [(ngModel)]="newUser.Email" placeholder="email address">
+    </div>
+
+
+
+    <div class="form-item">
+      <button (click)="save()" [disabled]="!newUser.Name">Next</button>
+      <div class="link" (click)="showAdd = false">Cancel</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="quick-add" *ngIf="showQuickView && quickViewUser">
+  <div class="form">
+    <div class="form-item">
+      <div class="product-item">
+        <div class="item">
+          <div class="icon" *ngIf="quickViewUser.Dp">
+            <div class="user-dp-image">
+              <img *ngIf="quickViewUser.Dp" [src]="quickViewUser.Dp" alt="">
+            </div>
+          </div>
+
+          <div class="icon" *ngIf="!quickViewUser.Dp">
+            <span class="material-icons">
+              account_circle
+            </span>
+          </div>
+        </div>
+        <div class="item">
+          <p class="strong-text">
+            {{quickViewUser.Tittle}} {{quickViewUser.Name}} {{quickViewUser.Surname}}
+          </p>
+          <p>
+            <b>
+              <span *ngIf="quickViewUser.PhoneNumber" class="cat">
+                {{quickViewUser.PhoneNumber}}
+              </span>
+              <span *ngIf="quickViewUser.Email" class="cat">
+                {{quickViewUser.Email}}
+              </span>
+            </b>
+
+            <span *ngIf="quickViewUser.AddressLineHome" class="cat address">
+              {{quickViewUser.AddressLineHome}}
+            </span>
+
+          </p>
+
+        </div>
+      </div>
+      <div class="link" (click)="edit(quickViewUser)">Edit Learner</div>
+
+
+    </div>
+
+    <div class="form-item">
+      <div class="subject-line" *ngFor="let item of userSubjects">
+        <div class="grade">{{item.GradeName}}</div>
+        <div class="subject">{{item.SubjectName}}</div>
+      </div>
+     
+      <div class="subject-line">
+        <div class="grade">
+          <select [(ngModel)]="newUserSubject.GradeId">
+            <option *ngFor="let item of grades" [value]="item.GradeId">{{item.Name}}</option>
+          </select>
+        </div>
+        <div class="subject">
+          <select [(ngModel)]="newUserSubject.SubjectId">
+            <option *ngFor="let item of subjects" [value]="item.SubjectId">{{item.Name}}</option>
+          </select>
+        </div>
+      </div>
+      <button (click)="saveNewUserSubejct()"
+        *ngIf="newUserSubject && newUserSubject.GradeId && newUserSubject.SubjectId">Save changes</button>
+
+    </div>
+
+
+
+    <div class="form-item">
+      <div class="link" (click)="showQuickView = false; quickViewUser= null">Cancel</div>
+    </div>
+  </div>
+</div>

@@ -20,3 +20,8 @@ export interface BreadModel {
   Name: string;
   Link:string
 }
+export interface SliderWidgetModel {
+  Name: string;
+  Description:string;
+  Link:string;
+}

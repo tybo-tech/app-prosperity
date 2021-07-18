@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { LocationStrategy } from '@angular/common';
 import { AccountService } from 'src/services/account.service';
 import { TokenModel } from 'src/models/account.model';
-import { ADMIN, TEACHER, IMAGE_DONE, IMAGE_WARN, SUPER } from 'src/shared/constants';
+import { ADMIN, TEACHER, IMAGE_DONE, IMAGE_WARN, SUPER, LEARNER } from 'src/shared/constants';
 import { ModalModel } from 'src/models/modal.model';
 import { ViewChild } from '@angular/core';
 import { ElementRef } from '@angular/core';
@@ -21,20 +21,10 @@ import { NavHistoryUX } from 'src/models/UxModel.model';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
-  @Output() navAction: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  showMobileNav;
-  rForm: FormGroup;
-  error: string;
-  loading$: Observable<boolean>;
   email = environment.ACCOUNT_TEST_EMAIL;
   password = environment.ACCOUNT_TEST_PASSWORD;
   hidePassword = true;
-  shopSecondaryColor;
-  shopPrimaryColor;
-  logoUrl;
-  token: string;
-  showLoader: boolean = false;
   modalModel: ModalModel = {
     heading: undefined,
     body: [],
@@ -42,11 +32,12 @@ export class SignInComponent implements OnInit {
     routeTo: 'home/sign-in',
     img: undefined
   };
-  navHistory: NavHistoryUX;
-  showAdd: boolean;
+  error: string;
+  loading: boolean;
+
+
 
   constructor(
-    private fb: FormBuilder,
     private routeTo: Router,
     private accountService: AccountService,
     private location: LocationStrategy,
@@ -59,24 +50,7 @@ export class SignInComponent implements OnInit {
 
 
   ngOnInit() {
- 
-    this.rForm = this.fb.group({
-      Email: new FormControl(
-        this.email,
-        Validators.compose([
-          Validators.required,
-          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-        ])
-      ),
-      Password: [this.password, Validators.required]
-    });
-    this.loading$ = this.accountService.loading;
-    const baseUrlMain: string = (this.location as any)._platformLocation.location.href;
-    this.token = baseUrlMain.substring(baseUrlMain.indexOf('=') + 1);
-    // this.activateUser();
-    this.uxService.uxNavHistoryObservable.subscribe(data => {
-      this.navHistory = data;
-    })
+
   }
 
   goto(url) {
@@ -85,57 +59,34 @@ export class SignInComponent implements OnInit {
   }
 
   back() {
-    if (this.navHistory && this.navHistory.BackToAfterLogin) {
-      this.routeTo.navigate([this.navHistory.BackToAfterLogin]);
-    } else {
-      this.routeTo.navigate(['']);
-    }
-  }
-  // togo
-  activateUser() {
-    const tokenModel: TokenModel = { Token: this.token };
-    if (tokenModel.Token) {
-      this.accountService.activateUser(tokenModel)
-        .subscribe(data => {
-          if (data > 0) {
-            alert('Account successfully activated, Please login');
-            return;
-          }
-        });
-    }
+
+    this.routeTo.navigate(['']);
   }
 
-  get getFormValues() {
-    return this.rForm.controls;
-  }
+
+
 
   Login() {
-    const email = this.getFormValues.Email.value;
-    const password = this.getFormValues.Password.value;
-    this.showLoader = true;
-    this.accountService.login({ email, password }).subscribe(user => {
+    this.error = undefined;
+    if (!this.email) {
+      this.error = 'Please enter your username.'
+      return
+    }
+    if (!this.password) {
+      this.error = 'Please enter your password.'
+      return
+    }
+    this.loading = true;
+    this.accountService.login({ email: this.email, password: this.password }).subscribe(user => {
+      this.loading = false;
       if (user && user.UserId) {
         this.error = '';
         this.accountService.updateUserState(user);
-        if (user && user.UserType === TEACHER && this.navHistory && this.navHistory.BackToAfterLogin) {
-          this.routeTo.navigate([this.navHistory.BackToAfterLogin]);
-          return;
-        }
-        if (user.UserType === ADMIN) {
-          this.routeTo.navigate(['admin/dashboard']);
-          return;
-        }
-        if (user.UserType === SUPER) {
-          this.routeTo.navigate(['admin/dashboard']);
-          return;
-        }
-    
-        this.showLoader = false;
+        this.routeTo.navigate(['admin/dashboard']);
       }
       else {
         let err: any = user;
-        this.error = err + '. , Or contact us if you did not get the mail.' || 'your email or password is incorrect';
-        this.showLoader = false;
+        this.error = 'Username or password is incorrect';
       }
     });
   }

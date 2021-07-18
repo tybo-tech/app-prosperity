@@ -1,3 +1,5 @@
+import { TopicContent } from "./topiccontent.model";
+
 export interface UserSubjectGrade {
   Id: string;
   UserId: string;
@@ -12,4 +14,5 @@ export interface UserSubjectGrade {
   ModifyDate?: string;
   ModifyUserId: string;
   StatusId: number;
+  Topiccontent?: TopicContent[];
 }

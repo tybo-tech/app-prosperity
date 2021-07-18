@@ -1,0 +1,43 @@
+<div class="new-top-bar">
+  <div class="menu-back-btn" (click)="back()">
+    <span class="material-icons">
+      arrow_back
+    </span>
+  </div>
+
+  <div class="col-header">
+    {{userSubjet?.SubjectName || 'Subject feed'}} {{userSubjet?.GradeName}}
+
+    <span>
+      By Mr Ndu
+    </span>
+  </div>
+</div>
+
+
+<app-card-list-widget *ngIf="subjectItems && subjectItems.length" [items]="subjectItems"></app-card-list-widget>
+
+
+
+
+<div class="quick-add" *ngIf="showAdd && newTopicContent">
+  <div class="form">
+    <h3>
+      Enter lesson title.
+    </h3>
+
+    <div class="form-item">
+      <input type="text" name="" id="" [(ngModel)]="newTopicContent.Tittle" placeholder="Introduction to science">
+    </div>
+
+
+
+
+    <div class="form-item">
+      <button (click)="save()" [disabled]="!newTopicContent.Tittle">Next</button>
+      <div class="link" (click)="showAdd = false">Cancel</div>
+    </div>
+  </div>
+</div>
+
+

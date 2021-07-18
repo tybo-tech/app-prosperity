@@ -7,13 +7,13 @@ import { CompanyCategory } from 'src/models/company.category.model';
 import { Category } from 'src/models/category.model';
 import { Company } from 'src/models/company.model';
 import { Images } from 'src/models/images.model';
-import { Product } from 'src/models';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImagesService {
+
 
 
   
@@ -29,6 +29,9 @@ export class ImagesService {
   getByOtherId(otherId: string) {
     return this.http.get<CompanyCategory>(`${this.url}/api/images/get-by-otherid.php?OtherId=${otherId}`)
   }
+  getListByOtherId(otherId: string) {
+    return this.http.get<Images[]>(`${this.url}/api/images/list-images-by-otherid.php?OtherId=${otherId}`)
+  }
 
   update(image: Images) {
     return this.http.post<Images>(
@@ -36,7 +39,7 @@ export class ImagesService {
     );
   }
   updateRange(images: Images[]) {
-    return this.http.post<Product>(
+    return this.http.post<any>(
       `${this.url}/api/images/update-image-range.php`, images
     );
   }
@@ -46,6 +49,10 @@ export class ImagesService {
     );
   }
 
-
+  addRange(images: Images[]) {
+    return this.http.post<any>(
+      `${this.url}/api/images/add-image-range.php`, images
+    );
+  }
 
 }

@@ -1,0 +1,43 @@
+@import '../../../../../../assets/styles/color';
+
+.action {
+  position: fixed;
+  bottom: 0;
+  padding: 1em;
+  padding-bottom: 2em;
+  background: $white;
+  width: 100%;
+  left: 0;
+  z-index: 1000;
+}
+
+.cards {
+  padding: 1em;
+  padding-bottom: 8em;
+
+  .card {
+    background: $white;
+    padding: 1em;
+    border-bottom: 1px solid $cloud;
+  }
+}
+
+hr {
+  margin: 1em 0;
+}
+
+.options {
+    margin-bottom: 2em;
+  a {
+    padding: .75em;
+    font-weight: 600;
+    background: $cloud;
+    border-radius: 5em;
+    margin: .2em 1em;
+    font-size: .75em;
+  }
+}
+textarea{
+    line-height: 1.2em;
+    font-family: 'Poppins', sans-serif;
+}

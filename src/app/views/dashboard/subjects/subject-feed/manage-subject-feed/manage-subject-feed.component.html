@@ -1,0 +1,98 @@
+<div class="main add-screen mobile-full" *ngIf="topic">
+
+  <div class="new-top-bar">
+    <div class="menu-back-btn" (click)="back()">
+      <span class="material-icons">
+        arrow_back
+      </span>
+    </div>
+
+    <div class="col-header">
+      {{topic?.Name}}
+    </div>
+  </div>
+
+
+  <div class="cards">
+    <div class="card">
+      <div class="form-item" *ngIf="!studentMode">
+        <label for="name">Name *</label>
+        <input type="text" [(ngModel)]="topic.Name" (keyup)="topicChaged = true" placeholder="e.g. Bongani">
+      </div>
+
+      <div class="form-group" *ngIf="!studentMode">
+        <label class="map" for="exampleInputSurname">Introduction</label>
+
+        <textarea name="" [(ngModel)]="topic.Description" (keyup)="topicChaged = true" id="" cols="30"
+          rows="10"></textarea>
+      </div>
+
+      <div class="" *ngIf="studentMode">
+        <h3>
+          {{topic.Name}}
+        </h3>
+        <p>
+          {{topic.Description}}
+        </p>
+      </div>
+
+    </div>
+    <!-- <hr> -->
+
+    <div class="card" *ngFor="let item of topic.TopicContent">
+
+      <div class="form-item" *ngIf="item.EditMode">
+        <button (click)="saveNotes(item)" *ngIf="item && item.ContentBody" class="secondary">Save
+          notes</button>
+        <br>
+        <br>
+        <quill-editor *ngIf="item.ContentType == 'Notes'" [styles]="editorStyle" [modules]="editorConfig"
+          [(ngModel)]="item.ContentBody">
+
+        </quill-editor>
+
+        <app-images *ngIf="item.ContentType == 'Images'" (onUploadFinished)="onUploadFinished($event)" [user]="user" [otherId]="item.TopicContentId" [images]="item.Images">
+        </app-images>
+      </div>
+
+      <div class="form-item" *ngIf="!item.EditMode ">
+        <div class="options" *ngIf="!studentMode">
+          <a (click)="item.EditMode = true" *ngIf="item.ContentType == 'Notes'">Edit section</a>
+          <a (click)="delete(item)">Delete section</a>
+        </div>
+        <div [innerHtml]="item.SafeContentBody"></div>
+    
+        <app-images *ngIf="item.ContentType == 'Images' && item.Images && item.Images.length" [studentMode]="studentMode" (deleteImageEvent)="onDeleteImageEvent($event)" (onUploadFinished)="onUploadFinished($event)" [user]="user" [otherId]="item.TopicContentId" [images]="item.Images">
+        </app-images>
+      </div>
+
+    </div>
+    <hr>
+
+    <div class="action-bar">
+      <a (click)="addNotes()">+ Notes</a>
+      <a (click)="addimage()">+ Images</a>
+      <a (click)="addimage()">+ Audio</a>
+      <a (click)="addimage()">+ File</a>
+      <a (click)="studentMode =! studentMode">Student Mode</a>
+
+    </div>
+    
+  </div>
+
+
+
+
+
+
+</div>
+
+
+
+<div class="action" *ngIf="topic && topicChaged">
+  <button mat-button class="primary" type="button" [disabled]="!topic.Name" type="button" (click)="save()">
+    Save Lesson
+  </button>
+</div>
+
+<app-user-feedback *ngIf="modalModel && modalModel.heading" [modalModel]="modalModel"></app-user-feedback>

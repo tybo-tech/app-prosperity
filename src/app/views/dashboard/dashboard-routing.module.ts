@@ -30,6 +30,16 @@ import { ListSubjectsComponent } from './subjects/list-subjects/list-subjects.co
 import { ManageSubjectComponent } from './subjects/manage-subject/manage-subject.component';
 import { ListGradesComponent } from './grades/list-grades/list-grades.component';
 import { ManageGradeComponent } from './grades/manage-grade/manage-grade.component';
+import { TeacherPortalComponent } from './dashboard/teacher-portal/teacher-portal.component';
+import { LearnerPortalComponent } from './dashboard/learner-portal/learner-portal.component';
+import { SubjectFeedComponent } from './subjects/subject-feed/subject-feed.component';
+import { VoiceRecoderComponent } from './subjects/voice-recoder/voice-recoder.component';
+import { ManageSubjectFeedComponent } from './subjects/subject-feed/manage-subject-feed/manage-subject-feed.component';
+import { DashboardTopBarComponent } from './navigations/dashboard-top-bar/dashboard-top-bar.component';
+import { SliderWidgetComponent } from './shared/slider-widget/slider-widget.component';
+import { CardWidgetComponent } from './shared/card-widget/card-widget.component';
+import { CardListWidgetComponent } from './shared/card-list-widget/card-list-widget.component';
+import { SubjectLessonsComponent } from './subjects/subject-lessons/subject-lessons.component';
 
 const routes: Routes = [
   {
@@ -53,6 +63,11 @@ const routes: Routes = [
       { path: 'manage-subject/:id', component: ManageSubjectComponent },
       { path: 'list-grades', component: ListGradesComponent },
       { path: 'manage-grade/:id', component: ManageGradeComponent },
+      { path: 'teacher-portal', component: TeacherPortalComponent },
+      { path: 'learner-portal', component: LearnerPortalComponent },
+      { path: 'subject-feed/:id', component: SubjectFeedComponent },
+      { path: 'manage-subject-feed/:id', component: ManageSubjectFeedComponent },
+      { path: 'subject-lessons/:id', component: SubjectLessonsComponent },
     ]
   }
 ];
@@ -81,13 +96,23 @@ export const declarations: Array<any> = [
   ManageSubjectComponent,
   ManageGradeComponent,
   ListGradesComponent,
+  TeacherPortalComponent,
+  LearnerPortalComponent,
+  SubjectFeedComponent,
+  VoiceRecoderComponent,
+  ManageSubjectFeedComponent,
   // pipes
   SearchProductPipe,
   Overviewv2Component,
   StatisticsComponent,
   MenuItemsComponent,
   ManageLearnerComponent,
-  ListLearnersComponent
+  ListLearnersComponent,
+  DashboardTopBarComponent,
+  SliderWidgetComponent,
+  CardWidgetComponent,
+  CardListWidgetComponent,
+  SubjectLessonsComponent
 
 ];
 @NgModule({

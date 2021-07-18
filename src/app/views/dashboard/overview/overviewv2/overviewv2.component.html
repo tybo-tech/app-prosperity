@@ -1,20 +1,17 @@
-<div class="overlay" *ngIf="showMenu" (click)="menu()"></div>
-<app-dash-nav *ngIf="showMenu"></app-dash-nav>
 
-<div class="new-top-bar">
-  <div class="menu-back-btn" (click)="menu()">
-    <span class="material-icons">
-      menu
+
+<div class="subjects container" *ngIf="subjects && subjects.length">
+  <h2>
+    <span>
+      My subjects 
     </span>
-  </div>
-
-  <div class="col-header">
-    Dashboard
-  </div>
+  </h2>
+  <app-slider-widget [items]="subjects"></app-slider-widget>
 </div>
 
 
-<div class="main global-padding" *ngIf="user && user.Company">
+
+<!-- <div class="main global-padding" *ngIf="user && user.Company">
   <div class="company-profile">
     <div class="cdp">
       <img [src]="user.Company.Dp" alt="">
@@ -23,37 +20,27 @@
     <div class="details">
       <h3>
         {{user.Company.Name}}
-        <span class="block lnk">
-          <a (click)="gotoShop()"> Go to my school page</a>
-          <span class="material-icons" style="left: 2em;" [cdkCopyToClipboard]="companyLink" (click)="copy()">
-            share
-          </span>
-
-
-        </span>
+        
         <span class="block black" *ngIf="user.Company.Description">{{user.Company.Description}} <br> <br></span>
 
-        <!-- <span class="block col-2-of-2">
-          <span class="block follow">Edit company</span>
-        </span> -->
+ 
       </h3>
 
-      <button style="width: 12em;" class="primary" (click)="goto('company-profile')">Edit school</button>
+      <button style="width: 12em;" class="primary"  *ngIf="user && user.UserType === ADMIN" (click)="goto('company-profile')">Edit school</button>
     </div>
   </div>
 
-  <!-- <h3 class="heading">
-  <span>  Field Service Reports</span> 
-  <li></li>
-  </h3>
-
-  <app-statistics *ngIf="user && user.UserType === ADMIN"></app-statistics> -->
-
+ 
   <br>
 
-  <app-menu-items *ngIf="user && user.UserType === ADMIN"></app-menu-items>
+ 
+</div> -->
 
-  <app-super-overview *ngIf="user && user.UserType === SUPER"></app-super-overview>
 
+<app-menu-items *ngIf="user && user.UserType === ADMIN"></app-menu-items>
 
-</div>
+<app-super-overview *ngIf="user && user.UserType === SUPER"></app-super-overview>
+
+<!-- <app-teacher-portal  *ngIf="user && user.UserType === TEACHER"></app-teacher-portal> -->
+
+<app-learner-portal  *ngIf="user && user.UserType === LEARNER"></app-learner-portal>

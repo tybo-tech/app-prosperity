@@ -36,6 +36,8 @@ export const GRADES = [
     "Grade 11",
     "Grade 12"
 ];
+export const SOMETHING_UPDATED = 'updated successfully';
+export const SOMETHING_SAVED = 'saved successfully';
 export const CUSTOMER = 'CUSTOMER';
 export const TEACHER = 'Teacher';
 export const LEARNER = 'Learner';

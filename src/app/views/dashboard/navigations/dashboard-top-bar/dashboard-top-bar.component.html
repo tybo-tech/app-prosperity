@@ -1,0 +1,31 @@
+<div class="new-top-bar">
+
+  <!-- <div class="menu-back-btn" (click)="menu()">
+    <span class="material-icons menu">
+      menu
+    </span>
+  </div> -->
+
+  <div class="col"  >
+    <img src="assets/images/icons/menu-icon.svg"  (click)="menu()" alt="">
+  </div>
+  <div class="col">
+    <img src="assets/images/icons/user-icon.svg" alt="">
+  </div>
+
+  <div class="col">
+  <p>
+    Hi {{user?.Name}}
+    <span>
+      Grade 10
+    </span>
+  </p>
+  </div>
+
+  <div class="col">
+    <img src="assets/images/icons/bell.svg" alt="">
+  </div>
+</div>
+
+<div class="overlay" *ngIf="showMenu" (click)="menu()"></div>
+<app-dash-nav *ngIf="showMenu"></app-dash-nav>

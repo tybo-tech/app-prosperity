@@ -1,0 +1,12 @@
+<!-- <p>
+  learner-portal works!
+</p> -->
+
+
+<div class="stats">
+
+  <div class="stat" *ngFor="let item of userSubjects" (click)="goToFeed(item.Id)">
+    <span> {{item.SubjectName}}</span>
+    {{item.GradeName}}
+  </div>
+</div>

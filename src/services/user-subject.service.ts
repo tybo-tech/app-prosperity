@@ -47,6 +47,9 @@ export class UserSubjectUserSubjectGradeService {
   getByUserId(userId:string): Observable<UserSubjectGrade[]>{
     return this.http.get<UserSubjectGrade[]>(`${this.url}/api/usersubject/get-by-user-id.php?UserId=${userId}`)
   }
+  getById(Id:string): Observable<UserSubjectGrade>{
+    return this.http.get<UserSubjectGrade>(`${this.url}/api/usersubject/get-by-id.php?Id=${Id}`)
+  }
   update(UserSubjectGrade: UserSubjectGrade) {
     return this.http.post<UserSubjectGrade>(`${this.url}/api/usersubject/update-UserSubjectGrade.php`, UserSubjectGrade);
   }

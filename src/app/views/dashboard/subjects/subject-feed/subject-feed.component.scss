@@ -1,0 +1,19 @@
+@import '../../../../../assets/styles/color';
+
+.menu-items{
+    display: grid;
+    padding: .5em;
+    grid-template-columns: 12em auto;
+
+    button{
+        display: block;
+        margin: .5em;
+        width: 13em;
+    }
+    
+}
+
+.main{
+    max-width: $max-width;
+    margin: 1em auto;
+}

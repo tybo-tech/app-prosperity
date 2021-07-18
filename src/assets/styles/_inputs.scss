@@ -8,15 +8,14 @@ input[type=text],
 [type=search],
 select, .input {
   width: 100%;
-  padding: 12px 20px;
   margin: 5px 0;
   display: inline-block;
   border: none;
   border-bottom: 1px solid $darker-grey;
-  border-radius: 4px;
+  border-radius: 0;
   box-sizing: border-box;
   background: none;
-  padding: .7em;
+  padding: 1em;
   color: $cloud;
 
   border: none;

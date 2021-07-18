@@ -2,29 +2,43 @@
 $height : 6em;
 
 .images {
-  display: flex;
+  display: grid;
   margin: .5em 0;
   width: auto;
   overflow-x: scroll;
   padding-bottom: 1em;
+  grid-template-columns: repeat(2, 50%);
 
   @media only screen and (max-width: 600px) {
     width: 100%;
+    grid-template-columns: 100%;
   }
 
   .image {
     padding: 1rem;
+    position: relative;
 
     @media only screen and (max-width: 600px) {
       padding: .3em;
     }
 
     img {
-      width: auto;
+      width: 100%;
       cursor: pointer;
       border-radius: .2em;
       margin: auto;
-      height: $height;
+    }
+
+    .delete{
+      position: absolute;
+      left: 38%;
+      bottom: 4em;
+      border-radius: 4em;
+      font-size: .75em;
+      padding: .5em .8em;
+      font-weight: 600;
+      background: $danger;
+      color: $white;
     }
   }
 
@@ -54,7 +68,6 @@ $height : 6em;
   background: $pop;
   width: $height;
   height: $height;
-  color: $white;
   top: .4em;
   left: 1em;
   border-radius: .2em;
@@ -101,13 +114,13 @@ $height : 6em;
 .image-zoomed {
   text-align: center;
   position: relative;
-  .sliders{
+
+  .sliders {
     position: absolute;
     display: grid;
     grid-template-columns: 50% auto;
-    .slider-btn{
-      
-    }
+
+    .slider-btn {}
   }
 
   img {
@@ -134,5 +147,18 @@ $height : 6em;
       margin: .5em;
       width: 90%;
     }
+  }
+}
+
+.laoding {
+  padding: 0em;
+  background: $pop;
+  margin: .5em;
+  overflow-x: hidden;
+
+  .bt {
+    background: $pop-darker;
+    height: .4em;
+    transition: 1s ease-in-out;
   }
 }

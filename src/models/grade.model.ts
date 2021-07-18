@@ -1,5 +1,5 @@
-import { Topic, TopicContent } from './topic.model';
 import { Tests } from './tests.model';
+import { Topic, TopicContent } from './topiccontent.model';
 
 
 

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1366" viewBox="0 0 1024 1366">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#09243f"/>
+      <stop offset="1"/>
+    </linearGradient>
+    <clipPath id="clip-home-tab-bg">
+      <rect width="1024" height="1366"/>
+    </clipPath>
+  </defs>
+  <g id="home-tab-bg" clip-path="url(#clip-home-tab-bg)">
+    <rect width="1024" height="1366" fill="url(#linear-gradient)"/>
+    <g id="Group_2416" data-name="Group 2416" transform="translate(-73 -162)">
+      <g id="Group_2356" data-name="Group 2356" transform="translate(537.889 261)">
+        <g id="Rectangle_297" data-name="Rectangle 297" transform="translate(0.11)" fill="none" stroke="#f2dc8a" stroke-width="5">
+          <rect width="90" height="81" stroke="none"/>
+          <rect x="2.5" y="2.5" width="85" height="76" fill="none"/>
+        </g>
+        <g id="Group_2355" data-name="Group 2355" transform="translate(20.91)">
+          <text id="p" transform="translate(0.2 64)" fill="#f2dc8a" font-size="66" font-family="Montserrat-Black, Montserrat" font-weight="800"><tspan x="0" y="0">P</tspan></text>
+          <ellipse id="Ellipse_52" data-name="Ellipse 52" cx="12.5" cy="13" rx="12.5" ry="13" transform="translate(14.2 23)" fill="#f2dc8a"/>
+          <g id="Group_2354" data-name="Group 2354" transform="translate(10.695 28.603)">
+            <g id="graduation-cap-variant" transform="translate(0 0)">
+              <g id="Group_2353" data-name="Group 2353">
+                <path id="Path_220" data-name="Path 220" d="M34.184,83.532,17.236,77.01,0,83.532l17.236,5.59Z" transform="translate(0 -77.01)" fill="#09243f"/>
+                <path id="Path_221" data-name="Path 221" d="M138.8,239.776v-4.8l-10.212,3.4-10.1-3.4v4.766A21.776,21.776,0,0,1,128.641,243C134.213,239.489,138.8,239.776,138.8,239.776Z" transform="translate(-111.495 -225.658)" fill="#09243f"/>
+                <path id="Path_222" data-name="Path 222" d="M479.059,230.634v6.9h1.971v-6.9a.856.856,0,0,0-.421-.735.98.98,0,0,0-.138-1.689l0-.012v-7.279l-.86.273v6.97l.025.035a.982.982,0,0,0-.16,1.7A.858.858,0,0,0,479.059,230.634Z" transform="translate(-450.805 -212.431)" fill="#09243f"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <text id="prosperity" transform="translate(486 388)" fill="#f2dc8a" font-size="19" font-family="Montserrat-Bold, Montserrat" font-weight="700" letter-spacing="0.415em"><tspan x="0" y="0">PROSPERITY</tspan></text>
+    </g>
+  </g>
+</svg>

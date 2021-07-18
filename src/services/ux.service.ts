@@ -108,5 +108,27 @@ export class UxService {
     this.showIntroPageBehaviorSubject.next(state);
     localStorage.setItem('ShowIntroPage', JSON.stringify(state));
   }
+
+  getTimeString(start: string) {
+    const time1 = new Date(start);
+    const time2 = new Date();
+    let units = 'hr ago'
+    const ms = time2.getTime() - time1.getTime();
+    let mins = ms / 60000;
+    if (mins < 60) {
+      mins = Math.floor(mins);
+      units = 'min ago'
+    }
+    if (mins <= 0) {
+      mins = Math.floor(mins * 60);
+     return 'few sec'
+    }
+   
+    if (mins >= 60) {
+      mins = Math.floor(mins / 60);
+      units = 'hr ago'
+    }
+    return `${mins} ${units}`;
+  }
 }
 
